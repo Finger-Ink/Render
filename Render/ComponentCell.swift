@@ -31,7 +31,7 @@ open class ComponentTableViewCell<C : ComponentViewType>: UITableViewCell {
     super.init(coder: aDecoder)
   }
 
-  open func mountComponentIfNecessary(_ component: @autoclosure (Void) -> C) {
+  open func mountComponentIfNecessary(_ component: @autoclosure () -> C) {
     guard self.componentView == nil else {
       return
     }
@@ -74,7 +74,7 @@ open class ComponentCollectionViewCell<C : ComponentViewType>: UICollectionViewC
 
   public private(set) var componentView: C?
 
-  open func mountComponentIfNecessary(_ component: @autoclosure (Void) -> C) {
+  open func mountComponentIfNecessary(_ component: @autoclosure () -> C) {
     guard self.componentView == nil else {
       return
     }
