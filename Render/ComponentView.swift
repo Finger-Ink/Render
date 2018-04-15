@@ -200,20 +200,33 @@ open class ComponentView<S: StateType>: UIView, ComponentViewType {
         return result
       }
 
-      switch animation {
-        case .animated(let duration, let options, let alongside):
-          UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
-            layout()
-            alongside?()
-          }) { _ in
-            UIView.animate(withDuration: duration/2) {
-              for (view, alpha) in newViews {
-                view.alpha = alpha
-              }
-            }
-          }
-        default: break
-      }
+		switch animation {
+		case .animated(let duration, let options, let alongside):
+			if #available(iOS 10, *) {
+				UIViewPropertyAnimator.runningPropertyAnimator(withDuration: duration, delay: 0, options: options, animations: {
+					layout()
+					alongside?()
+				}, completion: { (position) in
+					UIView.animate(withDuration: duration/2) {
+						for (view, alpha) in newViews {
+							view.alpha = alpha
+						}
+					}
+				})
+			} else {
+				UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
+					layout()
+					alongside?()
+				}) { _ in
+					UIView.animate(withDuration: duration/2) {
+						for (view, alpha) in newViews {
+							view.alpha = alpha
+						}
+					}
+				}
+			}
+		default: break
+		}
     // Lays out the views.
     } else {
       layout()
