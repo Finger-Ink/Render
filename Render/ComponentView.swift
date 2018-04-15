@@ -10,7 +10,7 @@ public enum RenderOption {
   /** The 'construct' method is called just once.
    *  This means that render will simply re-apply the existing configuration for the nodes
    *  and compute the new layout accordingly.
-   *  This is a very useful optimisation for components with a static view hierarchy. 
+   *  This is a very useful optimisation for components with a static view hierarchy.
    */
   case preventViewHierarchyDiff
 
@@ -59,10 +59,10 @@ public protocol ComponentViewType: AnyComponentView {
 
 // MARK: - Implementation
 
-/** Components let you split the UI into independent, reusable pieces, and think about each 
+/** Components let you split the UI into independent, reusable pieces, and think about each
  *  piece in isolation.
  *  A component represents a function that maps a state S to its representation.
- *  The infrastructure below takes care of applying the minimal set of diffs whenever it is 
+ *  The infrastructure below takes care of applying the minimal set of diffs whenever it is
  *  necessary.
  */
 open class ComponentView<S: StateType>: UIView, ComponentViewType {
@@ -81,7 +81,7 @@ open class ComponentView<S: StateType>: UIView, ComponentViewType {
     return self.root.identifier
   }
 
-  /** Alternative to subclassing ComponentView. */ 
+  /** Alternative to subclassing ComponentView. */
   public var constructBlock: Construct?
 
   /** The (current) root node. */
@@ -207,7 +207,7 @@ open class ComponentView<S: StateType>: UIView, ComponentViewType {
 					layout()
 					alongside?()
 				}, completion: { (position) in
-					UIView.animate(withDuration: duration/2) {
+					UIViewPropertyAnimator.runningPropertyAnimator(withDuration: duration/2, delay: 0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
 						for (view, alpha) in newViews {
 							view.alpha = alpha
 						}
@@ -235,7 +235,7 @@ open class ComponentView<S: StateType>: UIView, ComponentViewType {
 
   open func didRender() { }
 
-  /** Returns all views (descending recursively through the view hierarchy) that matches the 
+  /** Returns all views (descending recursively through the view hierarchy) that matches the
    *  condition passed as argument. */
   public func views(root: UIView? = nil, matching: (UIView) -> Bool) -> [UIView] {
     guard let view: UIView = root ?? self.rootView else {
