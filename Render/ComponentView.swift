@@ -203,16 +203,16 @@ open class ComponentView<S: StateType>: UIView, ComponentViewType {
 		switch animation {
 		case .animated(let duration, let options, let alongside):
 			if #available(iOS 10, *) {
-				UIViewPropertyAnimator.runningPropertyAnimator(withDuration: duration, delay: 0, options: options, animations: {
-					layout()
-					alongside?()
-				}, completion: { (position) in
-					UIViewPropertyAnimator.runningPropertyAnimator(withDuration: duration/2, delay: 0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
-						for (view, alpha) in newViews {
-							view.alpha = alpha
-						}
-					}
-				})
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: duration, delay: 0, options: options, animations: {
+  					layout()
+  					alongside?()
+  				}, completion: { (position) in
+  					UIViewPropertyAnimator.runningPropertyAnimator(withDuration: duration/2, delay: 0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
+  						for (view, alpha) in newViews {
+  							view.alpha = alpha
+  						}
+  					}, completion: nil)
+  				})
 			} else {
 				UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
 					layout()
