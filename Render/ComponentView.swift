@@ -103,12 +103,6 @@ open class ComponentView<S: StateType>: UIView, ComponentViewType {
     super.init(frame: CGRect.zero)
     self.rootView = self.root.renderedView
     self.addSubview(contentView)
-
-    NotificationCenter.default.addObserver(forName: Notification.Name("INJECTION_BUNDLE_NOTIFICATION"),
-                                           object: nil,
-                                           queue: nil) { _ in
-      self.render(options: [.usePreviousBoundsAndOptions])
-    }
   }
 
   required public init?(coder aDecoder: NSCoder) {
