@@ -31,6 +31,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '9.0'
 
   s.source_files = 'Render/**/*'
+  s.exclude_files = 'Render/objc/LICENCE'
 
   # s.resource_bundles = {
   #   'Render' => ['Render/Assets/*.png']

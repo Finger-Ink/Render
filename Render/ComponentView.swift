@@ -17,7 +17,7 @@ public enum RenderOption {
   /** Animates the layout changes. */
   case animated(duration: TimeInterval,
                 options: UIViewAnimationOptions,
-                alongside: ((Void) -> Void)?)
+                alongside: (() -> Void)?)
 
   case flexibleWidth
   case flexibleHeigth

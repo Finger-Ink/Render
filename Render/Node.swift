@@ -41,7 +41,7 @@ public protocol NodeType: class {
 
 public class Node<V: UIView>: NodeType {
 
-  public typealias CreateBlock = (Void) -> V
+  public typealias CreateBlock = () -> V
   public typealias ConfigureBlock = (V, YGLayout, CGSize) -> (Void)
   public typealias OnRenderBlock = (V?) -> (Void)
 
@@ -52,7 +52,7 @@ public class Node<V: UIView>: NodeType {
   }
   public private(set) var view: V?
 
-  /** The unique identifier of this node is its hierarchy. 
+  /** The unique identifier of this node is its hierarchy.
    *  Choosing a good identifier is foundamental for good and performant view recycling.
    */
   public let identifier: String
@@ -69,9 +69,9 @@ public class Node<V: UIView>: NodeType {
   private let configure: ConfigureBlock
 
   /** The initialization block for this node.
-   *  This is the perfect entry point for the configuration code that is intended to be run 
+   *  This is the perfect entry point for the configuration code that is intended to be run
    *  exactly once (at view creation time).
-   *  - Note: Remember to have a unique identifier set for this node if you have a custom 
+   *  - Note: Remember to have a unique identifier set for this node if you have a custom
    *  initialization closure.
    */
   private let create: CreateBlock
@@ -124,7 +124,7 @@ public class Node<V: UIView>: NodeType {
     }
     view.bounds.size = bounds
     view.yoga.applyLayout(preservingOrigin: false)
-    view.bounds.size = view.yoga.intrinsicSize  
+    view.bounds.size = view.yoga.intrinsicSize
     view.yoga.applyLayout(preservingOrigin: false)
   }
 
@@ -140,7 +140,7 @@ public class Node<V: UIView>: NodeType {
         // UIView reports its current size as the content size.
         // This is done to make sure that empty views don't show up.
         self.view?.frame.size = .zero
-        
+
         yoga.markDirty()
       }
     }
@@ -227,4 +227,3 @@ public class NilNode: NodeType {
 
   public func build(with reusable: UIView?) { }
 }
-
