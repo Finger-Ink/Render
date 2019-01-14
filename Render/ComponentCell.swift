@@ -26,7 +26,7 @@ open class ComponentTableViewCell<C : ComponentViewType>: UITableViewCell {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     self.selectionStyle = .none
   }
-  
+
   required public init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
   }
@@ -179,5 +179,23 @@ public struct CellPrototype {
       return CGSize.zero
     }
     return view.bounds.size
+  }
+
+  public static func size<C: ComponentViewType>(inSize size: CGSize,
+                                              class: C.Type,
+                                              identifier: String = String(describing: C.self),
+                                              state: StateType) -> CGSize {
+      guard let component = CellPrototype.prototypes[identifier] as? C else {
+          return CGSize.zero
+      }
+      component.state = state as? C.StateType
+
+      let size = CGSize(width: size.width, height: CGFloat.max)
+      component.render(in: size, options: [])
+
+      guard let view = component as? UIView else {
+          return CGSize.zero
+      }
+      return view.bounds.size
   }
 }
