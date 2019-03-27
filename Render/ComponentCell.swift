@@ -22,7 +22,7 @@ open class ComponentTableViewCell<C : ComponentViewType>: UITableViewCell {
 
   public private(set) var componentView: C?
 
-  public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+	public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     self.selectionStyle = .none
   }

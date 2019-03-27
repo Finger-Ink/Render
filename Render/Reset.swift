@@ -164,7 +164,7 @@ struct Reset {
       // Fallback on earlier versions
     }
     button.setTitle(Reset.Button.title(for: .highlighted), for: .highlighted)
-    button.setTitle(Reset.Button.title(for: UIControlState()), for: UIControlState())
+	button.setTitle(Reset.Button.title(for: UIControl.State()), for: UIControl.State())
     button.setTitle(Reset.Button.title(for: .reserved), for: .reserved)
     button.setTitle(Reset.Button.title(for: .selected), for: .selected)
 
@@ -178,8 +178,8 @@ struct Reset {
     }
     button.setTitleColor(Reset.Button.titleColor(for: .highlighted),
                          for: .highlighted)
-    button.setTitleColor(Reset.Button.titleColor(for: UIControlState()),
-                         for: UIControlState())
+	button.setTitleColor(Reset.Button.titleColor(for: UIControl.State()),
+						 for: UIControl.State())
     button.setTitleColor(Reset.Button.titleColor(for: .reserved),
                          for: .reserved)
     button.setTitleColor(Reset.Button.titleColor(for: .selected),
@@ -195,8 +195,8 @@ struct Reset {
     }
     button.setTitleShadowColor(Reset.Button.titleShadowColor(for: .highlighted),
                                for: .highlighted)
-    button.setTitleShadowColor(Reset.Button.titleShadowColor(for: UIControlState()),
-                               for: UIControlState())
+	button.setTitleShadowColor(Reset.Button.titleShadowColor(for: UIControl.State()),
+							   for: UIControl.State())
     button.setTitleShadowColor(Reset.Button.titleShadowColor(for: .reserved),
                                for: .reserved)
     button.setTitleShadowColor(Reset.Button.titleShadowColor(for: .selected),
@@ -209,7 +209,7 @@ struct Reset {
       // Fallback on earlier versions
     }
     button.setImage(Reset.Button.image(for: .highlighted), for: .highlighted)
-    button.setImage(Reset.Button.image(for: UIControlState()), for: UIControlState())
+	button.setImage(Reset.Button.image(for: UIControl.State()), for: UIControl.State())
     button.setImage(Reset.Button.image(for: .reserved), for: .reserved)
     button.setImage(Reset.Button.image(for: .selected), for: .selected)
 
@@ -223,8 +223,8 @@ struct Reset {
     }
     button.setBackgroundImage(Reset.Button.backgroundImage(for: .highlighted),
                               for: .highlighted)
-    button.setBackgroundImage(Reset.Button.backgroundImage(for: UIControlState()),
-                              for: UIControlState())
+	button.setBackgroundImage(Reset.Button.backgroundImage(for: UIControl.State()),
+							  for: UIControl.State())
     button.setBackgroundImage(Reset.Button.backgroundImage(for: .reserved),
                               for: .reserved)
     button.setBackgroundImage(Reset.Button.backgroundImage(for: .selected),
@@ -240,8 +240,8 @@ struct Reset {
     }
     button.setAttributedTitle(Reset.Button.attributedTitle(for: .highlighted),
                               for: .highlighted)
-    button.setAttributedTitle(Reset.Button.attributedTitle(for: UIControlState()),
-                              for: UIControlState())
+	button.setAttributedTitle(Reset.Button.attributedTitle(for: UIControl.State()),
+							  for: UIControl.State())
     button.setAttributedTitle(Reset.Button.attributedTitle(for: .reserved),
                               for: .reserved)
     button.setAttributedTitle(Reset.Button.attributedTitle(for: .selected),
@@ -274,7 +274,12 @@ struct Reset {
   }
 }
 
-extension UIView {
+protocol CanBeResetByRender {
+	func css_reset()
+	func prepareForComponentReuse()
+}
+
+extension CanBeResetByRender where Self: UIView {
 
   func css_reset() {
     Reset.resetCssView(self)
@@ -285,32 +290,34 @@ extension UIView {
   }
 }
 
+extension UIView: CanBeResetByRender {}
+
 extension UILabel {
-  override func prepareForComponentReuse() {
+func prepareForComponentReuse() {
     Reset.resetLabel(self)
   }
 }
 
 extension UITextField {
-  override func prepareForComponentReuse() {
+func prepareForComponentReuse() {
     Reset.resetTextField(self)
   }
 }
 
 extension UITextView {
-  override func prepareForComponentReuse() {
+func prepareForComponentReuse() {
     Reset.resetTextView(self)
   }
 }
 
 extension UIButton {
-  override func prepareForComponentReuse() {
+func prepareForComponentReuse() {
     Reset.resetButton(self)
   }
 }
 
 extension UIImageView {
-  override func prepareForComponentReuse() {
+func prepareForComponentReuse() {
     Reset.resetImageView(self)
   }
 }

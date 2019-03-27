@@ -68,7 +68,7 @@ public class TableNode: NSObject, NodeType, UITableViewDataSource, UITableViewDe
   public init(identifier: String = "CollectionNode",
               children: [NodeType] = [],
               create: @escaping Node<UITableView>.CreateBlock = { return UITableView() },
-              configure: @escaping Node<UITableView>.ConfigureBlock = { _ in }) {
+			  configure: @escaping Node<UITableView>.ConfigureBlock = { _,_,_  in }) {
 
     self.node = Node(identifier: identifier,
                      resetBeforeReuse: false,
@@ -84,7 +84,7 @@ public class TableNode: NSObject, NodeType, UITableViewDataSource, UITableViewDe
     node.render(in: bounds)
     if let table = self.renderedView as? UITableView {
       table.estimatedRowHeight = 64;
-      table.rowHeight = UITableViewAutomaticDimension
+		table.rowHeight = UITableView.automaticDimension
       table.dataSource = self
       table.reloadData()
     }

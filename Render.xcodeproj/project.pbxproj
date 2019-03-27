@@ -55,6 +55,7 @@
 		167272041EC330C000906746 /* YGPercentLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGPercentLayout.m; sourceTree = "<group>"; };
 		167272071EC3340600906746 /* YGPercentLayoutExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YGPercentLayoutExtension.swift; sourceTree = "<group>"; };
 		16C59F801E75BE9900D9E297 /* TableNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableNode.swift; sourceTree = "<group>"; };
+		C6013149224C28F800C83A5F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,14 +88,15 @@
 		164C11421E59ECB200766914 /* Render */ = {
 			isa = PBXGroup;
 			children = (
-				164C114B1E59ECC600766914 /* objc */,
+				C6013149224C28F800C83A5F /* Info.plist */,
 				164C11431E59ECB200766914 /* Render.h */,
-				164C11621E59ECEC00766914 /* Node.swift */,
-				164C11641E5A190000766914 /* Extensions.swift */,
-				164C11681E5A203100766914 /* Reset.swift */,
-				164C116A1E5A257300766914 /* ComponentView.swift */,
 				164C11A71E5E2F4400766914 /* ComponentCell.swift */,
+				164C116A1E5A257300766914 /* ComponentView.swift */,
+				164C11641E5A190000766914 /* Extensions.swift */,
+				164C11621E59ECEC00766914 /* Node.swift */,
+				164C11681E5A203100766914 /* Reset.swift */,
 				16C59F801E75BE9900D9E297 /* TableNode.swift */,
+				164C114B1E59ECC600766914 /* objc */,
 			);
 			path = Render;
 			sourceTree = "<group>";
@@ -182,6 +184,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 164C11361E59ECB100766914;
@@ -343,7 +346,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -362,7 +365,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.alexdrone.Render;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

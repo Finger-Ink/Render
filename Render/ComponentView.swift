@@ -16,7 +16,7 @@ public enum RenderOption {
 
   /** Animates the layout changes. */
   case animated(duration: TimeInterval,
-                options: UIViewAnimationOptions,
+	options: UIView.AnimationOptions,
                 alongside: (() -> Void)?)
 
   case flexibleWidth
@@ -201,7 +201,7 @@ open class ComponentView<S: StateType>: UIView, ComponentViewType {
   					layout()
   					alongside?()
   				}, completion: { (position) in
-  					UIViewPropertyAnimator.runningPropertyAnimator(withDuration: duration/2, delay: 0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
+					UIViewPropertyAnimator.runningPropertyAnimator(withDuration: duration/2, delay: 0, options: UIView.AnimationOptions.curveEaseInOut, animations: {
   						for (view, alpha) in newViews {
   							view.alpha = alpha
   						}

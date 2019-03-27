@@ -108,7 +108,7 @@ public class Node<V: UIView>: NodeType {
               resetBeforeReuse: Bool = false,
               children: [NodeType] = [],
               create: @escaping CreateBlock = { V() },
-              configure: @escaping ConfigureBlock = { _ in }) {
+			  configure: @escaping ConfigureBlock = { _,_,_  in }) {
     self.identifier = identifier
     self.resetBeforeReuse = resetBeforeReuse
     self.create = create
