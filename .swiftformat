@@ -1,0 +1,17 @@
+# format options
+--binarygrouping none
+--closingparen same-line
+--commas inline
+--decimalgrouping none
+--hexgrouping none
+--indent tabs
+--octalgrouping none
+--patternlet hoist
+--wrapcollections beforefirst
+--comments ignore
+
+# file options
+--exclude Pods,Carthage
+
+# disables
+--disable blankLinesAroundMark,blankLinesAtStartOfScope,unusedArguments

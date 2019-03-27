@@ -1,21 +1,20 @@
-import UIKit
 import Render
+import UIKit
 
 class Example1ViewController: ViewController {
 
-  private let component = HelloWorldComponentView()
+	private let component = HelloWorldComponentView()
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    view.addSubview(component)
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		view.addSubview(component)
 
-    // Set a state to the component.
-    component.state = HelloWorldState(name: "Alex")
-  }
+		// Set a state to the component.
+		component.state = HelloWorldState(name: "Alex")
+	}
 
-  override func viewDidLayoutSubviews() {
-    component.render(in: view.bounds.size)
-    component.center = view.center
-  }
+	override func viewDidLayoutSubviews() {
+		component.render(in: view.bounds.size)
+		component.center = view.center
+	}
 }
-
