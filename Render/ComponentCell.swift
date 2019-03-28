@@ -121,7 +121,7 @@ extension UITableView {
 	public func renderVisibleComponents() {
 		let size = CGSize(width: bounds.size.width, height: CGFloat.max)
 		visibleCells
-			.flatMap { cell in cell as? ComponentCellType }
+			.compactMap { cell in return cell as? ComponentCellType }
 			.forEach { cell in cell.render(in: size, options: []) }
 	}
 }
@@ -141,7 +141,7 @@ extension UICollectionView {
 	public func renderVisibleComponents() {
 		let size = CGSize(width: bounds.size.width, height: CGFloat.max)
 		visibleCells
-			.flatMap { cell in cell as? ComponentCellType }
+			.compactMap { cell in cell as? ComponentCellType }
 			.forEach { cell in cell.render(in: size, options: []) }
 	}
 }
