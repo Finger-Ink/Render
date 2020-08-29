@@ -136,15 +136,27 @@ public class Node<V: UIView>: NodeType {
     }
     self.configure(self.view!, self.view!.yoga, bounds)
     if let yoga = self.view?.yoga, yoga.isEnabled && yoga.isLeaf {
-      if !(self.view is ComponentViewType) {
-        // UIView reports its current size as the content size.
-        // This is done to make sure that empty views don't show up.
-        self.view?.frame.size = .zero
+      // This code is _definitely_ required. Without it, our labels
+      // show up with "..." and are incorrectly sized.
+      maybeMarkDirty(view: view, yoga: yoga)
+      // if !(self.view is ComponentViewType) {
+      //   // UIView reports its current size as the content size.
+      //   // This is done to make sure that empty views don't show up.
+      //   self.view?.frame.size = .zero
 
-        yoga.markDirty()
-      }
+      //   yoga.markDirty()
+      // }
     }
     self.didRender()
+  }
+
+  private func maybeMarkDirty<T: UIView & ComponentViewType>(view: T?, yoga: YGLayout) {
+      return
+  }
+  
+  private func maybeMarkDirty(view: UIView?, yoga: YGLayout) {
+      view?.frame.size = .zero
+      yoga.markDirty()
   }
 
   public func willRender() {
